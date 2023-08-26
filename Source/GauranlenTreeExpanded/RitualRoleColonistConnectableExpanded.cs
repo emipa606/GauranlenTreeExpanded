@@ -9,7 +9,7 @@ internal class RitualRoleColonistConnectableExpanded : RitualRoleColonistConnect
         LordJob_Ritual ritual = null, RitualRoleAssignments assignments = null, Precept_Ritual precept = null,
         bool skipReason = false)
     {
-        if (!p.connections.ConnectedThings.Any(x => x.def == ThingDefOf.Plant_TreeGauranlen))
+        if (!p.connections.ConnectedThings.Any(x => x == selectedTarget.Thing))
         {
             return base.AppliesToPawn(p, out reason, selectedTarget, ritual, assignments, precept, skipReason);
         }
