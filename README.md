@@ -9,8 +9,6 @@ Update of busted_bunnys mod https://steamcommunity.com/sharedfiles/filedetails/?
 	
 ![Image](https://i.imgur.com/Z4GOv8H.png)
 
-![Image](https://i.imgur.com/p7Fv1Z6.gif)
-
 *Gauranlen Tree gets an expansion. Completely rewritten code allows connecting up to 4 pawns per tree. Brings the possibility to replant Gauranlen Tree. Adds new ritual to tear connection with a tree. And a gizmo to protect the tree with dryads.* 
 
 **Make sure to read compatiblity warning down below!**
@@ -80,6 +78,9 @@ Kilain - commisioner of this mod.
 -  For best support, please use the Discord-channel for error-reporting.
 -  Do not report errors by making a discussion-thread, I get no notification of that.
 -  If you have the solution for a problem, please post it to the GitHub repository.
+-  Use https://github.com/RimSort/RimSort/releases/latest]RimSort to sort your mods
 
 
-https://steamcommunity.com/sharedfiles/filedetails/changelog/3025108023]Last updated 2023-08-26
+
+https://steamcommunity.com/sharedfiles/filedetails/changelog/3025108023]![Image](https://img.shields.io/github/v/release/emipa606/GauranlenTreeExpanded?label=latest%20version&style=plastic&color=9f1111&labelColor=black)
+

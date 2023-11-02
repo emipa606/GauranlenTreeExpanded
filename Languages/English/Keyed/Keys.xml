@@ -24,5 +24,8 @@
   <PruningTicksExpanded>Amount of time for one prunning cycle</PruningTicksExpanded>
   <DebuffDurationDaysGauranlenTreeExpanded>Disconnection duration (Requires game restart to apply)</DebuffDurationDaysGauranlenTreeExpanded>
   <DebuffBaseMoodValueGauranlenTreeExpanded>Base mood debuff (Requires game restart to apply)</DebuffBaseMoodValueGauranlenTreeExpanded>
+  <WildDryadSpawningGauranlenTreeExpanded>Wild dryads (enabled)</WildDryadSpawningGauranlenTreeExpanded>
+  <NoWildDryadSpawningGauranlenTreeExpanded>Wild dryads (disabled)</NoWildDryadSpawningGauranlenTreeExpanded>
+  <NoWildDryadSpawningGauranlenTreeExpandedTT>Select if wild dryads should spawn</NoWildDryadSpawningGauranlenTreeExpandedTT>
   <CurrentModVersionGauranlenTreeExpanded>Installed mod-version: {0}</CurrentModVersionGauranlenTreeExpanded>
 </LanguageData>

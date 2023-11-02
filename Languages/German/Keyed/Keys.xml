@@ -26,4 +26,7 @@
   <DebuffDurationDaysGauranlenTreeExpanded>Dauer der Verbindungsunterbrechung (erfordert einen Neustart des Spiels)</DebuffDurationDaysGauranlenTreeExpanded>
   <DebuffBaseMoodValueGauranlenTreeExpanded>Grundstimmungsschwächung (erfordert einen Neustart des Spiels, um zu wirken)</DebuffBaseMoodValueGauranlenTreeExpanded>
   <CurrentModVersionGauranlenTreeExpanded>Installierte Mod-Version: {0}</CurrentModVersionGauranlenTreeExpanded>
+  <WildDryadSpawningGauranlenTreeExpanded>Wilde Dryaden (aktiviert)</WildDryadSpawningGauranlenTreeExpanded>
+  <NoWildDryadSpawningGauranlenTreeExpanded>Wilde Dryaden (deaktiviert)</NoWildDryadSpawningGauranlenTreeExpanded>
+  <NoWildDryadSpawningGauranlenTreeExpandedTT>Auswählen, ob wilde Dryaden laichen sollen</NoWildDryadSpawningGauranlenTreeExpandedTT>
 </LanguageData>

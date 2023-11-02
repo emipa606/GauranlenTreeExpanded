@@ -26,4 +26,7 @@
   <DebuffDurationDaysGauranlenTreeExpanded>Durée de la déconnexion (nécessite un redémarrage du jeu pour s'appliquer)</DebuffDurationDaysGauranlenTreeExpanded>
   <DebuffBaseMoodValueGauranlenTreeExpanded>Débuff d'humeur de base (nécessite un redémarrage du jeu pour s'appliquer)</DebuffBaseMoodValueGauranlenTreeExpanded>
   <CurrentModVersionGauranlenTreeExpanded>Version installée du mod : {0}</CurrentModVersionGauranlenTreeExpanded>
+  <WildDryadSpawningGauranlenTreeExpanded>Dryades sauvages (activées)</WildDryadSpawningGauranlenTreeExpanded>
+  <NoWildDryadSpawningGauranlenTreeExpanded>Dryades sauvages (désactivées)</NoWildDryadSpawningGauranlenTreeExpanded>
+  <NoWildDryadSpawningGauranlenTreeExpandedTT>Choisir si les dryades sauvages doivent frayer</NoWildDryadSpawningGauranlenTreeExpandedTT>
 </LanguageData>

@@ -26,4 +26,7 @@
   <DebuffDurationDaysGauranlenTreeExpanded>断开连接的持续时间（需要重新启动游戏才能使用）</DebuffDurationDaysGauranlenTreeExpanded>
   <DebuffBaseMoodValueGauranlenTreeExpanded>基础情绪衰减（需要重启游戏才能应用）</DebuffBaseMoodValueGauranlenTreeExpanded>
   <CurrentModVersionGauranlenTreeExpanded>已安装模块版本：{0}</CurrentModVersionGauranlenTreeExpanded>
+  <WildDryadSpawningGauranlenTreeExpanded>野生干尸（已启用）</WildDryadSpawningGauranlenTreeExpanded>
+  <NoWildDryadSpawningGauranlenTreeExpanded>野生干尸（残疾）</NoWildDryadSpawningGauranlenTreeExpanded>
+  <NoWildDryadSpawningGauranlenTreeExpandedTT>选择野生干尸是否产卵</NoWildDryadSpawningGauranlenTreeExpandedTT>
 </LanguageData>

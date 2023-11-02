@@ -42,7 +42,7 @@ public class Gizmo_PruningConfigExpanded : Gizmo
 
     public override float GetWidth(float maxWidth)
     {
-        return 212f;
+        return Width;
     }
 
     public override GizmoResult GizmoOnGUI(Vector2 topLeft, float maxWidth, GizmoRenderParms parms)

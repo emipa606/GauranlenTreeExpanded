@@ -49,6 +49,8 @@ public class CompTreeConnectionExpanded : ThingComp
 
     private int nextUntornTick = -1;
 
+    public bool NoWildDryadSpawning;
+
     private Gizmo_PruningConfigExpanded pruningGizmo;
 
     private int spawnTick = -1;
@@ -99,6 +101,11 @@ public class CompTreeConnectionExpanded : ThingComp
         {
             if (!Connected)
             {
+                if (NoWildDryadSpawning)
+                {
+                    return 0;
+                }
+
                 return Props?.maxDryadsWild ?? 0;
             }
 
@@ -435,6 +442,20 @@ public class CompTreeConnectionExpanded : ThingComp
 
                 yield return command_Action2;
             }
+        }
+        else
+        {
+            yield return new Command_Action
+            {
+                defaultLabel =
+                    (NoWildDryadSpawning
+                        ? "NoWildDryadSpawningGauranlenTreeExpanded"
+                        : "WildDryadSpawningGauranlenTreeExpanded").Translate(),
+                defaultDesc = "NoWildDryadSpawningGauranlenTreeExpandedTT".Translate(),
+                icon = ContentFinder<Texture2D>.Get(
+                    NoWildDryadSpawning ? "UI/WildDryadDisabled" : "UI/WildDryadEnabled"),
+                action = delegate { NoWildDryadSpawning = !NoWildDryadSpawning; }
+            };
         }
 
         if (!Prefs.DevMode)
@@ -834,7 +855,7 @@ public class CompTreeConnectionExpanded : ThingComp
             for (var i = 0; i < connectedPawns.Count; i++)
             {
                 text += connectedPawns[i].NameFullColored;
-                text = i == connectedPawns.Count - 1 ? text + "." : text + ", ";
+                text = i == connectedPawns.Count - 1 ? $"{text}." : $"{text}, ";
             }
 
             foreach (var connectedPawn in connectedPawns)
@@ -850,9 +871,9 @@ public class CompTreeConnectionExpanded : ThingComp
             if (HasProductionMode && Mode != desiredMode)
             {
                 text = connectedPawns.Count != 1
-                    ? text + "\n" + "WaitingForConnectorsToChangeCaste".Translate().Resolve()
-                    : text + "\n" + "WaitingForConnectorToChangeCaste"
-                        .Translate(connectedPawns[0].Named("CONNECTEDPAWN")).Resolve();
+                    ? $"{text}\n{"WaitingForConnectorsToChangeCaste".Translate().Resolve()}"
+                    : $"{text}\n{"WaitingForConnectorToChangeCaste"
+                        .Translate(connectedPawns[0].Named("CONNECTEDPAWN")).Resolve()}";
             }
 
             if (Mode != null)
@@ -908,6 +929,7 @@ public class CompTreeConnectionExpanded : ThingComp
 
     public override void PostExposeData()
     {
+        Scribe_Values.Look(ref NoWildDryadSpawning, "NoWildDryadSpawning");
         Scribe_Defs.Look(ref currentMode, "currentMode");
         Scribe_Defs.Look(ref desiredMode, "desiredMode");
         Scribe_Values.Look(ref nextUntornTick, "nextUntornTick", -1);

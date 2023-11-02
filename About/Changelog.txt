@@ -1,5 +1,9 @@
 # Changelog for GauranlenTreeExpanded
 
+1.4.2 - Added setting to disable the spawning of wild dryads.
+Used DeepL to update translations for ChineseSimplified, French, German
+
+
 1.4.1 - Fixed that pawns could only be connected to one tree, thanks thailyn for the info!
 
 
