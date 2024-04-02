@@ -95,7 +95,7 @@ public abstract class CompDryadHolderExpanded : ThingComp, ISuspendableThingHold
 
         foreach (var thing in innerContainer)
         {
-            thing.DrawAt(parent.Position.ToVector3ShiftedWithAltitude(AltitudeLayer.BuildingBelowTop));
+            thing.DrawNowAt(parent.Position.ToVector3ShiftedWithAltitude(AltitudeLayer.BuildingBelowTop));
         }
 
         var matrix = default(Matrix4x4);

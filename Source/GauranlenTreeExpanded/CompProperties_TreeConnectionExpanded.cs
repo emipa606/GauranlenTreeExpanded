@@ -5,15 +5,14 @@ namespace GauranlenTreeExpanded;
 
 public class CompProperties_TreeConnectionExpanded : CompProperties
 {
+    public readonly float connectionStrengthGainPerHourPruningBase = 0.01f;
+
+    public readonly float connectionStrengthLossPerDryadDeath = 0.1f;
     public SimpleCurve connectionLossDailyPerBuildingDistanceCurve;
 
     public SimpleCurve connectionLossPerLevelCurve;
 
-    public float connectionStrengthGainPerHourPruningBase = 0.01f;
-
     public SimpleCurve connectionStrengthGainPerPlantSkill;
-
-    public float connectionStrengthLossPerDryadDeath = 0.1f;
 
     public FloatRange initialConnectionStrengthRange;
 

@@ -5,10 +5,10 @@ using Verse;
 
 namespace GauranlenTreeExpanded;
 
-[HarmonyPatch(typeof(Pawn_ConnectionsTracker), "Notify_PawnKilled")]
+[HarmonyPatch(typeof(Pawn_ConnectionsTracker), nameof(Pawn_ConnectionsTracker.Notify_PawnKilled))]
 public static class Pawn_ConnectionsTrackerHarmony
 {
-    public static void Prefix(Pawn_ConnectionsTracker __instance, Pawn ___pawn, List<Thing> ___connectedThings)
+    public static void Prefix(Pawn ___pawn, List<Thing> ___connectedThings)
     {
         for (var num = ___connectedThings.Count - 1; num >= 0; num--)
         {

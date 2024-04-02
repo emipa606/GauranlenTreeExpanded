@@ -4,6 +4,8 @@
 
 Update of busted_bunnys mod https://steamcommunity.com/sharedfiles/filedetails/?id=2605358686
 
+- Added option to disable the spawning of wild dryads.
+
 ![Image](https://i.imgur.com/pufA0kM.png)
 
 	

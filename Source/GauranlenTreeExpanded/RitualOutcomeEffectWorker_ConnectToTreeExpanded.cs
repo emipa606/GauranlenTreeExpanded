@@ -47,6 +47,6 @@ internal class RitualOutcomeEffectWorker_ConnectToTreeExpanded : RitualOutcomeEf
         compTreeConnectionExpanded.ConnectToPawn(pawn, quality);
         Find.LetterStack.ReceiveLetter("LetterLabelPawnConnected".Translate(thing.Named("TREE")),
             "LetterTextPawnConnected".Translate(thing.Named("TREE"), pawn.Named("CONNECTOR")),
-            LetterDefOf.RitualOutcomePositive, pawn, null, null, new List<ThingDef> { thing.def });
+            LetterDefOf.RitualOutcomePositive, pawn, null, null, [thing.def]);
     }
 }

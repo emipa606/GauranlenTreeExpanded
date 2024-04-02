@@ -4,7 +4,7 @@ using Verse.AI;
 
 namespace GauranlenTreeExpanded;
 
-[HarmonyPatch(typeof(MentalBreakWorker_RunWild), "TryStart")]
+[HarmonyPatch(typeof(MentalBreakWorker_RunWild), nameof(MentalBreakWorker_RunWild.TryStart))]
 public static class MentalBreakWorker_RunWildPatch
 {
     public static void Postfix(bool __result, Pawn pawn)

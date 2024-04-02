@@ -5,7 +5,7 @@ using Verse;
 
 namespace GauranlenTreeExpanded;
 
-[HarmonyPatch(typeof(Pawn_ConnectionsTracker), "Notify_ConnectedThingDestroyed")]
+[HarmonyPatch(typeof(Pawn_ConnectionsTracker), nameof(Pawn_ConnectionsTracker.Notify_ConnectedThingDestroyed))]
 public class Notify_ConnectedThingDestroyedPatch
 {
     public static bool Prefix(Thing thing, List<Thing> ___connectedThings)

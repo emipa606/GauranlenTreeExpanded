@@ -12,12 +12,12 @@ namespace GauranlenTreeExpanded;
 
 public class CompTreeConnectionExpanded : ThingComp
 {
-    private readonly List<Pawn> tmpDryads = new List<Pawn>();
+    private readonly List<Pawn> tmpDryads = [];
 
     private Lord cachedLordJob;
 
     private Material cachedPodMat;
-    private List<Pawn> connectedPawns = new List<Pawn>();
+    private List<Pawn> connectedPawns = [];
 
     private Dictionary<Pawn, float> connectionStrength = new Dictionary<Pawn, float>();
 
@@ -27,7 +27,7 @@ public class CompTreeConnectionExpanded : ThingComp
 
     public GauranlenTreeModeDef desiredMode;
 
-    private List<Pawn> dryads = new List<Pawn>();
+    private List<Pawn> dryads = [];
 
     public Thing gaumakerPod;
 
@@ -963,7 +963,7 @@ public class CompTreeConnectionExpanded : ThingComp
 
         if (connectedPawns == null)
         {
-            connectedPawns = new List<Pawn>();
+            connectedPawns = [];
         }
     }
 }

@@ -1,3 +1,4 @@
+using LudeonTK;
 using RimWorld;
 using UnityEngine;
 using Verse;
@@ -117,8 +118,8 @@ public class Gizmo_PruningConfigExpanded : Gizmo
     {
         var num = Mathf.Round((rect.width - 8f) * percent);
         GUI.DrawTexture(new Rect(rect.x + 3f + num, rect.y, 2f, rect.height), StrengthTargetTex);
-        var num2 = Widgets.AdjustCoordToUIScalingFloor(rect.x + 2f + num);
-        var xMax = Widgets.AdjustCoordToUIScalingCeil(num2 + 4f);
+        var num2 = UIScaling.AdjustCoordToUIScalingFloor(rect.x + 2f + num);
+        var xMax = UIScaling.AdjustCoordToUIScalingCeil(num2 + 4f);
         var rect2 = default(Rect);
         rect2.y = rect.y - 3f;
         rect2.height = 5f;

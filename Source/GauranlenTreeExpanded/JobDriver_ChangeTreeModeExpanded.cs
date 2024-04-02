@@ -18,7 +18,7 @@ public class JobDriver_ChangeTreeModeExpanded : JobDriver
     {
         this.FailOnDespawnedOrNull(TargetIndex.A);
         yield return Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.Touch);
-        yield return Toils_General.WaitWith(TargetIndex.A, 120, true);
+        yield return Toils_General.WaitWith(TargetIndex.A, WaitTicks, true);
         yield return Toils_General.Do(delegate
         {
             job.targetA.Thing.TryGetComp<CompTreeConnectionExpanded>().FinalizeMode(pawn);

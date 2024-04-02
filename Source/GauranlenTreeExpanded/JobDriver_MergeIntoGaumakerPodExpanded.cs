@@ -24,7 +24,7 @@ public class JobDriver_MergeIntoGaumakerPodExpanded : JobDriver
         this.FailOnDespawnedOrNull(TargetIndex.B);
         this.FailOn(() => GaumakerPod.Full);
         yield return Toils_Goto.GotoThing(TargetIndex.B, PathEndMode.Touch);
-        yield return Toils_General.WaitWith(TargetIndex.B, 120, true);
+        yield return Toils_General.WaitWith(TargetIndex.B, WaitTicks, true);
         yield return Toils_General.Do(delegate { GaumakerPod.TryAcceptPawn(pawn); });
     }
 }
