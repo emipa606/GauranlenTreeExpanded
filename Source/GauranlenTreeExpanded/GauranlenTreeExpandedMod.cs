@@ -29,6 +29,11 @@ public class GauranlenTreeExpandedMod : Mod
         listing_Standard.Label(
             "CurrentValueGauranlenTreeExpanded".Translate(Math.Round(GauranlenTreeSettings.MaxBonusDryad * 100f, 2)));
         GauranlenTreeSettings.MaxBonusDryad = listing_Standard.Slider(GauranlenTreeSettings.MaxBonusDryad, 0f, 3f);
+        listing_Standard.Label("MaxConnectedPawnsLabel".Translate());
+        listing_Standard.Label(
+            "CurrentValueHoursGauranlenTreeExpanded".Translate(GauranlenTreeSettings.MaxConnectedPawns));
+        GauranlenTreeSettings.MaxConnectedPawns =
+            (int)Math.Round(listing_Standard.Slider(GauranlenTreeSettings.MaxConnectedPawns, 1f, 20f));
         listing_Standard.Label("DaysForDryadsToGrow".Translate());
         listing_Standard.Label(
             "CurrentValueDaysGauranlenTreeExpanded".Translate(Math.Round(GauranlenTreeSettings.SpawnDays, 2)));
@@ -81,11 +86,11 @@ public class GauranlenTreeExpandedMod : Mod
             GauranlenTreeSettings.PruningDuration = 2500;
             GauranlenTreeSettings.BaseMoodDebuff = 10f;
             GauranlenTreeSettings.DurationDays = 5f;
+            GauranlenTreeSettings.MaxConnectedPawns = 4;
         }
 
         if (currentVersion != null)
         {
-            listing_Standard.Gap();
             GUI.contentColor = Color.gray;
             listing_Standard.Label("CurrentModVersionGauranlenTreeExpanded".Translate(currentVersion));
             GUI.contentColor = Color.white;

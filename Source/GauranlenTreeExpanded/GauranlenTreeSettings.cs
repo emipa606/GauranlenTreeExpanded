@@ -5,6 +5,8 @@ namespace GauranlenTreeExpanded;
 [StaticConstructorOnStartup]
 public class GauranlenTreeSettings : ModSettings
 {
+    public static int MaxConnectedPawns = 4;
+
     public static float MaxBonusDryad = 1.5f;
 
     public static float SpawnDays = 8f;
@@ -28,6 +30,7 @@ public class GauranlenTreeSettings : ModSettings
     public override void ExposeData()
     {
         base.ExposeData();
+        Scribe_Values.Look(ref MaxConnectedPawns, "MaxConnectedPawns", 4);
         Scribe_Values.Look(ref MaxBonusDryad, "MaxBonusDryad", 1.5f);
         Scribe_Values.Look(ref SpawnDays, "SpawnDays", 8f);
         Scribe_Values.Look(ref TreeExtraction, "TreeExtraction", true);

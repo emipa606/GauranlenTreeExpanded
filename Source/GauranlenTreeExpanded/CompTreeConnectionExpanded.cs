@@ -93,7 +93,7 @@ public class CompTreeConnectionExpanded : ThingComp
         }
     }
 
-    public bool CanBeConnected => connectedPawns.Count < 4;
+    public bool CanBeConnected => connectedPawns.Count < GauranlenTreeSettings.MaxConnectedPawns;
 
     public int MaxDryads
     {
@@ -116,7 +116,8 @@ public class CompTreeConnectionExpanded : ThingComp
             }
 
             return (int)Math.Round((float)num / connectedPawns.Count *
-                                   GenMath.LerpDouble(1f, 4f, 1f, MaxBonusDryad, connectedPawns.Count));
+                                   GenMath.LerpDouble(1f, GauranlenTreeSettings.MaxConnectedPawns, 1f, MaxBonusDryad,
+                                       connectedPawns.Count));
         }
     }
 

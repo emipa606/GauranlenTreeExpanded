@@ -31,7 +31,7 @@ public abstract class JobDriver_CreateAndEnterDryadHolderExpanded : JobDriver
             job.targetB = result;
         });
         yield return Toils_Goto.GotoCell(TargetIndex.B, PathEndMode.OnCell);
-        yield return Toils_General.Wait(200).WithProgressBarToilDelay(TargetIndex.B)
+        yield return Toils_General.Wait(TicksToCreate).WithProgressBarToilDelay(TargetIndex.B)
             .FailOnDespawnedOrNull(TargetIndex.B);
         yield return EnterToil();
     }

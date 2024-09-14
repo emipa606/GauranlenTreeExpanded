@@ -29,4 +29,5 @@
   <WildDryadSpawningGauranlenTreeExpanded>Wilde Dryaden (aktiviert)</WildDryadSpawningGauranlenTreeExpanded>
   <NoWildDryadSpawningGauranlenTreeExpanded>Wilde Dryaden (deaktiviert)</NoWildDryadSpawningGauranlenTreeExpanded>
   <NoWildDryadSpawningGauranlenTreeExpandedTT>Auswählen, ob wilde Dryaden laichen sollen</NoWildDryadSpawningGauranlenTreeExpandedTT>
+  <MaxConnectedPawnsLabel>Maximal verbundene Bauern pro Baum</MaxConnectedPawnsLabel>
 </LanguageData>

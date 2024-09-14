@@ -32,7 +32,7 @@ public abstract class JobGiver_CreateAndEnterDryadHolderExpanded : ThinkNode_Job
             var compTreeConnectionExpanded = connectedThing.TryGetComp<CompTreeConnectionExpanded>();
             if (compTreeConnectionExpanded != null && ExtraValidator(pawn, compTreeConnectionExpanded) &&
                 !connectedThing.IsForbidden(pawn) && pawn.CanReach(connectedThing, PathEndMode.Touch, Danger.Deadly) &&
-                CellFinder.TryFindRandomCellNear(connectedThing.Position, pawn.Map, 4,
+                CellFinder.TryFindRandomCellNear(connectedThing.Position, pawn.Map, SquareRadius,
                     c => GauranlenUtility.CocoonAndPodCellValidator(c, pawn.Map), out var _))
             {
                 return JobMaker.MakeJob(JobDef, connectedThing);
