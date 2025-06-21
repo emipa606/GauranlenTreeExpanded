@@ -2,6 +2,12 @@
   "Continued": true,
   "CanAdd": "0",
   "CanRemove": "2",
-  "PreviewVersion": "1.5",
-  "SocialImageSet": true
+  "PreviewVersion": "1.6",
+  "SocialImageSet": true,
+  "SearchTags": [
+    " dryad",
+    " connection",
+    " ritual"
+  ],
+  "LastXmlCleaning": "2025-06-21T20:47:25.6990955+02:00"
 }

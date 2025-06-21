@@ -24,7 +24,7 @@ public class JobDriver_PruneGauranlenTreeExpanded : JobDriver
     public override void Notify_Starting()
     {
         base.Notify_Starting();
-        var num = TreeConnection.DesiredConnectionStrength - TreeConnection.GetConnectionStrength(pawn);
+        var num = TreeConnection.desiredConnectionStrength - TreeConnection.GetConnectionStrength(pawn);
         numPositions = Mathf.Min(MaxPositions,
             Mathf.CeilToInt(num / TreeConnection.ConnectionStrengthGainPerHourOfPruning(pawn)) + 1);
     }
@@ -40,10 +40,10 @@ public class JobDriver_PruneGauranlenTreeExpanded : JobDriver
         var num = Mathf.RoundToInt(DurationTicks / pawn.GetStatValue(StatDefOf.PruningSpeed));
         var findAdjacentCell = Toils_General.Do(delegate
         {
-            job.targetB = GetAdjacentCell(job.GetTarget(TreeIndex).Thing);
+            job.targetB = getAdjacentCell(job.GetTarget(TreeIndex).Thing);
         });
         var goToAdjacentCell = Toils_Goto.GotoCell(AdjacentCellIndex, PathEndMode.OnCell).FailOn(() =>
-            TreeConnection.GetConnectionStrength() >= TreeConnection.DesiredConnectionStrength);
+            TreeConnection.GetConnectionStrength() >= TreeConnection.desiredConnectionStrength);
         var prune = Toils_General.WaitWith(TreeIndex, num).WithEffect(EffecterDefOf.Harvest_MetaOnly, TreeIndex)
             .WithEffect(EffecterDefOf.GauranlenDebris, TreeIndex)
             .PlaySustainerOrSound(SoundDefOf.Interact_Prune);
@@ -52,7 +52,7 @@ public class JobDriver_PruneGauranlenTreeExpanded : JobDriver
         {
             TreeConnection.Prune(pawn);
             pawn.skills?.Learn(SkillDefOf.Plants, 0.085f);
-            if (TreeConnection.GetConnectionStrength() >= TreeConnection.DesiredConnectionStrength)
+            if (TreeConnection.GetConnectionStrength() >= TreeConnection.desiredConnectionStrength)
             {
                 ReadyForNextToil();
             }
@@ -66,7 +66,7 @@ public class JobDriver_PruneGauranlenTreeExpanded : JobDriver
         }
     }
 
-    private IntVec3 GetAdjacentCell(Thing treeThing)
+    private IntVec3 getAdjacentCell(Thing treeThing)
     {
         return (from x in GenAdj.CellsAdjacent8Way(treeThing)
             where x.InBounds(pawn.Map) && !x.Fogged(pawn.Map) && !x.IsForbidden(pawn) &&

@@ -53,7 +53,7 @@ public class CompDryadCocoonExpanded : CompDryadHolderExpanded
         parent.Destroy();
     }
 
-    public override void PostDeSpawn(Map map)
+    public override void PostDeSpawn(Map map, DestroyMode mode = DestroyMode.Vanish)
     {
         innerContainer.TryDropAll(parent.Position, map, ThingPlaceMode.Near, delegate(Thing t, int _)
         {
@@ -70,11 +70,8 @@ public class CompDryadCocoonExpanded : CompDryadHolderExpanded
             return;
         }
 
-        if (dryadKind != null && dryadKind != TreeComp.DryadKind)
-        {
-            parent.Destroy();
-        }
-        else if (innerContainer.Count > 0 && tree != null && TreeComp.ShouldReturnToTree((Pawn)innerContainer[0]))
+        if (dryadKind != null && dryadKind != TreeComp.DryadKind || innerContainer.Count > 0 && tree != null &&
+            TreeComp.ShouldReturnToTree((Pawn)innerContainer[0]))
         {
             parent.Destroy();
         }

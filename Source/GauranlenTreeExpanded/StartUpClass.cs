@@ -1,3 +1,4 @@
+using System.Reflection;
 using HarmonyLib;
 using RimWorld;
 using Verse;
@@ -9,7 +10,7 @@ public class StartUpClass
 {
     static StartUpClass()
     {
-        new Harmony("GauranlenTreeExpandedMod.patch").PatchAll();
+        new Harmony("GauranlenTreeExpandedMod.patch").PatchAll(Assembly.GetExecutingAssembly());
         foreach (var allDef in DefDatabase<ThinkTreeDef>.AllDefs)
         {
             if (allDef.defName == "Dryad")

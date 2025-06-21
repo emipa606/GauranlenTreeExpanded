@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: The connector will connect to the tree. -->
+  <ConnectToTreeExpanded.description>The connector will connect to the tree.</ConnectToTreeExpanded.description>
+  <!-- EN: participant count -->
+  <ConnectToTreeExpanded.comps.0.label>participant count</ConnectToTreeExpanded.comps.0.label>
+  <!-- EN: The connector will start with 25-45% connection strength, depending on ritual quality. -->
+  <ConnectToTreeExpanded.extraPredictedOutcomeDescriptions.0>The connector will start with 25-45% connection strength, depending on ritual quality.</ConnectToTreeExpanded.extraPredictedOutcomeDescriptions.0>
+  <!-- EN: Every 2% increase in quality will grow a patch of Gauranlen moss around the tree, beautifying the area. -->
+  <ConnectToTreeExpanded.extraPredictedOutcomeDescriptions.1>Every 2% increase in quality will grow a patch of Gauranlen moss around the tree, beautifying the area.</ConnectToTreeExpanded.extraPredictedOutcomeDescriptions.1>
+</LanguageData>

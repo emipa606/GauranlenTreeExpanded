@@ -19,62 +19,62 @@ public class GauranlenTreeExpandedMod : Mod
 
     public override void DoSettingsWindowContents(Rect inRect)
     {
-        var listing_Standard = new Listing_Standard
+        var listingStandard = new Listing_Standard
         {
             verticalSpacing = -4f,
             maxOneColumn = false
         };
-        listing_Standard.Begin(inRect);
-        listing_Standard.Label("MaxBonusDryadLabel".Translate());
-        listing_Standard.Label(
+        listingStandard.Begin(inRect);
+        listingStandard.Label("MaxBonusDryadLabel".Translate());
+        listingStandard.Label(
             "CurrentValueGauranlenTreeExpanded".Translate(Math.Round(GauranlenTreeSettings.MaxBonusDryad * 100f, 2)));
-        GauranlenTreeSettings.MaxBonusDryad = listing_Standard.Slider(GauranlenTreeSettings.MaxBonusDryad, 0f, 3f);
-        listing_Standard.Label("MaxConnectedPawnsLabel".Translate());
-        listing_Standard.Label(
+        GauranlenTreeSettings.MaxBonusDryad = listingStandard.Slider(GauranlenTreeSettings.MaxBonusDryad, 0f, 3f);
+        listingStandard.Label("MaxConnectedPawnsLabel".Translate());
+        listingStandard.Label(
             "CurrentValueHoursGauranlenTreeExpanded".Translate(GauranlenTreeSettings.MaxConnectedPawns));
         GauranlenTreeSettings.MaxConnectedPawns =
-            (int)Math.Round(listing_Standard.Slider(GauranlenTreeSettings.MaxConnectedPawns, 1f, 20f));
-        listing_Standard.Label("DaysForDryadsToGrow".Translate());
-        listing_Standard.Label(
+            (int)Math.Round(listingStandard.Slider(GauranlenTreeSettings.MaxConnectedPawns, 1f, 20f));
+        listingStandard.Label("DaysForDryadsToGrow".Translate());
+        listingStandard.Label(
             "CurrentValueDaysGauranlenTreeExpanded".Translate(Math.Round(GauranlenTreeSettings.SpawnDays, 2)));
-        GauranlenTreeSettings.SpawnDays = listing_Standard.Slider(GauranlenTreeSettings.SpawnDays, 0.5f, 12f);
-        listing_Standard.Label("MaxMossRadiusExpandedLabel".Translate());
-        listing_Standard.Label(
+        GauranlenTreeSettings.SpawnDays = listingStandard.Slider(GauranlenTreeSettings.SpawnDays, 0.5f, 12f);
+        listingStandard.Label("MaxMossRadiusExpandedLabel".Translate());
+        listingStandard.Label(
             "CurrentValueRadiusGauranlenTreeExpanded".Translate(Math.Round(GauranlenTreeSettings.MaxMossRadius, 1)));
-        GauranlenTreeSettings.MaxMossRadius = listing_Standard.Slider(GauranlenTreeSettings.MaxMossRadius, 1f, 12f);
-        listing_Standard.Label("MaxBuildingRadiusExpandedLabel".Translate());
-        listing_Standard.Label(
+        GauranlenTreeSettings.MaxMossRadius = listingStandard.Slider(GauranlenTreeSettings.MaxMossRadius, 1f, 12f);
+        listingStandard.Label("MaxBuildingRadiusExpandedLabel".Translate());
+        listingStandard.Label(
             "CurrentValueRadiusGauranlenTreeExpanded".Translate(Math.Round(GauranlenTreeSettings.BuildingRadius, 1)));
-        GauranlenTreeSettings.BuildingRadius = listing_Standard.Slider(GauranlenTreeSettings.BuildingRadius, 0f, 12f);
-        listing_Standard.Label("ConnectionTornTicksExpanded".Translate());
-        listing_Standard.Label(
+        GauranlenTreeSettings.BuildingRadius = listingStandard.Slider(GauranlenTreeSettings.BuildingRadius, 0f, 12f);
+        listingStandard.Label("ConnectionTornTicksExpanded".Translate());
+        listingStandard.Label(
             "CurrentValueDaysGauranlenTreeExpanded".Translate(
                 (GauranlenTreeSettings.ConnectionTornTicks / GenDate.TicksPerDay).ToString()));
         GauranlenTreeSettings.ConnectionTornTicks = (int)(GenDate.TicksPerDay *
-                                                          listing_Standard.Slider(
+                                                          listingStandard.Slider(
                                                               (float)GauranlenTreeSettings.ConnectionTornTicks /
                                                               GenDate.TicksPerDay, 1f, 30f));
-        listing_Standard.Label("PruningTicksExpanded".Translate());
-        listing_Standard.Label(
+        listingStandard.Label("PruningTicksExpanded".Translate());
+        listingStandard.Label(
             "CurrentValueHoursGauranlenTreeExpanded".Translate(GauranlenTreeSettings.PruningDuration
                 .ToStringTicksToPeriod()));
         GauranlenTreeSettings.PruningDuration =
-            (int)listing_Standard.Slider(GauranlenTreeSettings.PruningDuration, 625f, 5000f);
-        listing_Standard.Label("DebuffDurationDaysGauranlenTreeExpanded".Translate());
-        listing_Standard.Label(
+            (int)listingStandard.Slider(GauranlenTreeSettings.PruningDuration, 625f, 5000f);
+        listingStandard.Label("DebuffDurationDaysGauranlenTreeExpanded".Translate());
+        listingStandard.Label(
             "CurrentValueDaysGauranlenTreeExpanded".Translate(Math.Round(GauranlenTreeSettings.DurationDays, 1)));
-        GauranlenTreeSettings.DurationDays = listing_Standard.Slider(GauranlenTreeSettings.DurationDays, 1f, 15f);
-        listing_Standard.Label("DebuffBaseMoodValueGauranlenTreeExpanded".Translate());
-        listing_Standard.Label(
+        GauranlenTreeSettings.DurationDays = listingStandard.Slider(GauranlenTreeSettings.DurationDays, 1f, 15f);
+        listingStandard.Label("DebuffBaseMoodValueGauranlenTreeExpanded".Translate());
+        listingStandard.Label(
             "CurrentValueHoursGauranlenTreeExpanded".Translate(Math.Round(GauranlenTreeSettings.BaseMoodDebuff, 0)));
         GauranlenTreeSettings.BaseMoodDebuff =
-            (float)Math.Round(listing_Standard.Slider(GauranlenTreeSettings.BaseMoodDebuff, 5f, 20f), 0);
-        listing_Standard.verticalSpacing = 2f;
-        listing_Standard.CheckboxLabeled("DisableTreeExtractingExpanded".Translate(),
+            (float)Math.Round(listingStandard.Slider(GauranlenTreeSettings.BaseMoodDebuff, 5f, 20f), 0);
+        listingStandard.verticalSpacing = 2f;
+        listingStandard.CheckboxLabeled("DisableTreeExtractingExpanded".Translate(),
             ref GauranlenTreeSettings.TreeExtraction);
-        listing_Standard.CheckboxLabeled("DisableDisconnectionRitualExpanded".Translate(),
+        listingStandard.CheckboxLabeled("DisableDisconnectionRitualExpanded".Translate(),
             ref GauranlenTreeSettings.EnableDisconnectionRitual);
-        if (listing_Standard.ButtonText("RestoreDefaultsGauranlenTreeExpanded".Translate()))
+        if (listingStandard.ButtonText("RestoreDefaultsGauranlenTreeExpanded".Translate()))
         {
             GauranlenTreeSettings.MaxBonusDryad = 1.5f;
             GauranlenTreeSettings.SpawnDays = 8f;
@@ -92,11 +92,11 @@ public class GauranlenTreeExpandedMod : Mod
         if (currentVersion != null)
         {
             GUI.contentColor = Color.gray;
-            listing_Standard.Label("CurrentModVersionGauranlenTreeExpanded".Translate(currentVersion));
+            listingStandard.Label("CurrentModVersionGauranlenTreeExpanded".Translate(currentVersion));
             GUI.contentColor = Color.white;
         }
 
-        listing_Standard.End();
+        listingStandard.End();
     }
 
     public override string SettingsCategory()

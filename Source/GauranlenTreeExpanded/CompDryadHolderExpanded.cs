@@ -19,16 +19,13 @@ public abstract class CompDryadHolderExpanded : ThingComp, ISuspendableThingHold
 
     protected Thing tree;
 
-    public CompProperties_DryadCocoon Props => (CompProperties_DryadCocoon)props;
+    protected CompProperties_DryadCocoon Props => (CompProperties_DryadCocoon)props;
 
     protected CompTreeConnectionExpanded TreeComp
     {
         get
         {
-            if (cachedTreeComp == null)
-            {
-                cachedTreeComp = tree?.TryGetComp<CompTreeConnectionExpanded>();
-            }
+            cachedTreeComp ??= tree?.TryGetComp<CompTreeConnectionExpanded>();
 
             return cachedTreeComp;
         }
@@ -70,7 +67,7 @@ public abstract class CompDryadHolderExpanded : ThingComp, ISuspendableThingHold
 
     public override void CompTick()
     {
-        innerContainer.ThingOwnerTick();
+        base.CompTick();
         if (tickComplete < 0)
         {
             return;
@@ -114,12 +111,12 @@ public abstract class CompDryadHolderExpanded : ThingComp, ISuspendableThingHold
             yield break;
         }
 
-        var command_Action = new Command_Action
+        var commandAction = new Command_Action
         {
             defaultLabel = "DEV: Complete",
             action = Complete
         };
-        yield return command_Action;
+        yield return commandAction;
     }
 
     public virtual void TryAcceptPawn(Pawn p)

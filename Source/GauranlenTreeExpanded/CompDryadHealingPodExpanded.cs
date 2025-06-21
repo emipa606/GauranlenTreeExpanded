@@ -19,7 +19,7 @@ public class CompDryadHealingPodExpanded : CompDryadHolderExpanded
         tickExpire = Find.TickManager.TicksGame + 600;
     }
 
-    public override void PostDeSpawn(Map map)
+    public override void PostDeSpawn(Map map, DestroyMode mode = DestroyMode.Vanish)
     {
         innerContainer.TryDropAll(parent.Position, map, ThingPlaceMode.Near, delegate(Thing t, int _)
         {
@@ -76,11 +76,8 @@ public class CompDryadHealingPodExpanded : CompDryadHolderExpanded
             for (var num = hediffs.Count - 1; num >= 0; num--)
             {
                 if (hediffs[num] is Hediff_MissingPart &&
-                    !pawn.health.hediffSet.PartOrAnyAncestorHasDirectlyAddedParts(hediffs[num].Part))
-                {
-                    pawn.health.RemoveHediff(hediffs[num]);
-                }
-                else if (hediffs[num].def.isBad)
+                    !pawn.health.hediffSet.PartOrAnyAncestorHasDirectlyAddedParts(hediffs[num].Part) ||
+                    hediffs[num].def.isBad)
                 {
                     pawn.health.RemoveHediff(hediffs[num]);
                 }

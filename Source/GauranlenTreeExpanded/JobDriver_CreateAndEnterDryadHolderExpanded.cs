@@ -36,5 +36,5 @@ public abstract class JobDriver_CreateAndEnterDryadHolderExpanded : JobDriver
         yield return EnterToil();
     }
 
-    public abstract Toil EnterToil();
+    protected abstract Toil EnterToil();
 }

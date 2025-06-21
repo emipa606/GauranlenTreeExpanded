@@ -5,6 +5,7 @@
 Update of busted_bunnys mod https://steamcommunity.com/sharedfiles/filedetails/?id=2605358686
 
 - Added option to disable the spawning of wild dryads.
+- Added setting to change the amount of pawns that can be connected to a tree
 
 ![Image](https://i.imgur.com/pufA0kM.png)
 	
@@ -75,6 +76,6 @@ Kilain - commisioner of this mod.
 -  If you have the solution for a problem, please post it to the GitHub repository.
 -  Use [RimSort](https://github.com/RimSort/RimSort/releases/latest) to sort your mods
 
+ 
 
-
-[![Image](https://img.shields.io/github/v/release/emipa606/GauranlenTreeExpanded?label=latest%20version&style=plastic&color=9f1111&labelColor=black)](https://steamcommunity.com/sharedfiles/filedetails/changelog/3025108023)
+[![Image](https://img.shields.io/github/v/release/emipa606/GauranlenTreeExpanded?label=latest%20version&style=plastic&color=9f1111&labelColor=black)](https://steamcommunity.com/sharedfiles/filedetails/changelog/3025108023) | tags:  dryad,  connection,  ritual

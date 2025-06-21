@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: tree disconnection process -->
+  <GauranlenTreeExpanded_TearConnection.label>tree disconnection process</GauranlenTreeExpanded_TearConnection.label>
+  <!-- EN: Connected will tear connection with a Gauranlen tree. The disconnector will touch the Gauranlen tree and speak to it, ripping a link between tree. -->
+  <GauranlenTreeExpanded_TearConnection.description>Connected will tear connection with a Gauranlen tree. The disconnector will touch the Gauranlen tree and speak to it, ripping a link between tree.</GauranlenTreeExpanded_TearConnection.description>
+</LanguageData>

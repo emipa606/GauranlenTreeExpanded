@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: Take care of gauranlen tree. Includes pruning and changing dryad caste. Can only be performed by connected. -->
+  <GauranlenTreeExpanded.description>Take care of gauranlen tree. Includes pruning and changing dryad caste. Can only be performed by connected.</GauranlenTreeExpanded.description>
+  <!-- EN: Gauranlen tree caring -->
+  <GauranlenTreeExpanded.gerundLabel>Gauranlen tree caring</GauranlenTreeExpanded.gerundLabel>
+  <!-- EN: gauranlen care -->
+  <GauranlenTreeExpanded.labelShort>gauranlen care</GauranlenTreeExpanded.labelShort>
+  <!-- EN: Connected -->
+  <GauranlenTreeExpanded.pawnLabel>Connected</GauranlenTreeExpanded.pawnLabel>
+  <!-- EN: Prune -->
+  <GauranlenTreeExpanded.verb>Prune</GauranlenTreeExpanded.verb>
+</LanguageData>

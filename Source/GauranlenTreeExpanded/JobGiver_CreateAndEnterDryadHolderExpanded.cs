@@ -6,11 +6,11 @@ namespace GauranlenTreeExpanded;
 
 public abstract class JobGiver_CreateAndEnterDryadHolderExpanded : ThinkNode_JobGiver
 {
-    public const int SquareRadius = 4;
+    private const int SquareRadius = 4;
 
-    public abstract JobDef JobDef { get; }
+    protected abstract JobDef JobDef { get; }
 
-    public virtual bool ExtraValidator(Pawn pawn, CompTreeConnectionExpanded connectionComp)
+    protected virtual bool ExtraValidator(Pawn pawn, CompTreeConnectionExpanded connectionComp)
     {
         return false;
     }
@@ -33,7 +33,7 @@ public abstract class JobGiver_CreateAndEnterDryadHolderExpanded : ThinkNode_Job
             if (compTreeConnectionExpanded != null && ExtraValidator(pawn, compTreeConnectionExpanded) &&
                 !connectedThing.IsForbidden(pawn) && pawn.CanReach(connectedThing, PathEndMode.Touch, Danger.Deadly) &&
                 CellFinder.TryFindRandomCellNear(connectedThing.Position, pawn.Map, SquareRadius,
-                    c => GauranlenUtility.CocoonAndPodCellValidator(c, pawn.Map), out var _))
+                    c => GauranlenUtility.CocoonAndPodCellValidator(c, pawn.Map), out _))
             {
                 return JobMaker.MakeJob(JobDef, connectedThing);
             }

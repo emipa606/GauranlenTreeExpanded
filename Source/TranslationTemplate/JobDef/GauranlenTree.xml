@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: creating cocoon. -->
+  <CreateAndEnterCocoonExpanded.reportString>creating cocoon.</CreateAndEnterCocoonExpanded.reportString>
+  <!-- EN: creating healing pod. -->
+  <CreateAndEnterHealingPodExpanded.reportString>creating healing pod.</CreateAndEnterHealingPodExpanded.reportString>
+  <!-- EN: merging into TargetB. -->
+  <MergeIntoGaumakerPodExpanded.reportString>merging into TargetB.</MergeIntoGaumakerPodExpanded.reportString>
+  <!-- EN: pruning TargetA. -->
+  <PruneGauranlenTreeExpanded.reportString>pruning TargetA.</PruneGauranlenTreeExpanded.reportString>
+  <!-- EN: returning to TargetA. -->
+  <ReturnToGauranlenTreeExpanded.reportString>returning to TargetA.</ReturnToGauranlenTreeExpanded.reportString>
+</LanguageData>

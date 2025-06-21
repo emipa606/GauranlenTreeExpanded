@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: Connected pawn will tear connection with the tree. -->
+  <GauranlenTreeExpanded_TearConnection.description>Connected pawn will tear connection with the tree.</GauranlenTreeExpanded_TearConnection.description>
+  <!-- EN: participant count -->
+  <GauranlenTreeExpanded_TearConnection.comps.0.label>participant count</GauranlenTreeExpanded_TearConnection.comps.0.label>
+</LanguageData>

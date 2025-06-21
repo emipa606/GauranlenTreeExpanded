@@ -19,11 +19,11 @@ public class CompTreeConnectionExpanded : ThingComp
     private Material cachedPodMat;
     private List<Pawn> connectedPawns = [];
 
-    private Dictionary<Pawn, float> connectionStrength = new Dictionary<Pawn, float>();
+    private Dictionary<Pawn, float> connectionStrength = new();
 
     private GauranlenTreeModeDef currentMode;
 
-    public float DesiredConnectionStrength = 0.5f;
+    public float desiredConnectionStrength = 0.5f;
 
     public GauranlenTreeModeDef desiredMode;
 
@@ -31,7 +31,7 @@ public class CompTreeConnectionExpanded : ThingComp
 
     public Thing gaumakerPod;
 
-    private Dictionary<Pawn, int> lastPrunedTicks = new Dictionary<Pawn, int>();
+    private Dictionary<Pawn, int> lastPrunedTicks = new();
 
     private int lastSubPlantTick = -1;
 
@@ -49,25 +49,25 @@ public class CompTreeConnectionExpanded : ThingComp
 
     private int nextUntornTick = -1;
 
-    public bool NoWildDryadSpawning;
+    private bool noWildDryadSpawning;
 
     private Gizmo_PruningConfigExpanded pruningGizmo;
 
     private int spawnTick = -1;
 
-    private float MaxBonusDryad => GauranlenTreeSettings.MaxBonusDryad;
+    private static float MaxBonusDryad => GauranlenTreeSettings.MaxBonusDryad;
 
-    private float SpawnDays => GauranlenTreeSettings.SpawnDays;
+    private static float SpawnDays => GauranlenTreeSettings.SpawnDays;
 
-    private int ConnectionTornTicks => GauranlenTreeSettings.ConnectionTornTicks;
+    private static int ConnectionTornTicks => GauranlenTreeSettings.ConnectionTornTicks;
 
-    private float MaxBuildingRadius => GauranlenTreeSettings.BuildingRadius;
+    private static float MaxBuildingRadius => GauranlenTreeSettings.BuildingRadius;
 
     public List<Pawn> ConnectedPawns => connectedPawns;
 
     public bool ConnectionTorn => nextUntornTick >= Find.TickManager.TicksGame;
 
-    public bool HasProductionMode => desiredMode != null;
+    private bool HasProductionMode => desiredMode != null;
 
     public int UntornInDurationTicks => nextUntornTick - Find.TickManager.TicksGame;
 
@@ -95,13 +95,13 @@ public class CompTreeConnectionExpanded : ThingComp
 
     public bool CanBeConnected => connectedPawns.Count < GauranlenTreeSettings.MaxConnectedPawns;
 
-    public int MaxDryads
+    private int MaxDryads
     {
         get
         {
             if (!Connected)
             {
-                if (NoWildDryadSpawning)
+                if (noWildDryadSpawning)
                 {
                     return 0;
                 }
@@ -174,7 +174,7 @@ public class CompTreeConnectionExpanded : ThingComp
         return ConnectionStrength;
     }
 
-    public void SetConnectionStrength(Pawn pawn, float value)
+    private void setConnectionStrength(Pawn pawn, float value)
     {
         lock (connectionStrength)
         {
@@ -182,12 +182,12 @@ public class CompTreeConnectionExpanded : ThingComp
         }
     }
 
-    public int GetLastPrunedTick(Pawn pawn)
+    private int getLastPrunedTick(Pawn pawn)
     {
         return pawn != null ? lastPrunedTicks.TryGetValue(pawn) : 0;
     }
 
-    public void SetLastPrunedTick(Pawn pawn, int value)
+    private void setLastPrunedTick(Pawn pawn, int value)
     {
         lock (lastPrunedTicks)
         {
@@ -195,7 +195,7 @@ public class CompTreeConnectionExpanded : ThingComp
         }
     }
 
-    private float ClosestDistanceToBlockingBuilding(List<Thing> buildings)
+    private float closestDistanceToBlockingBuilding(List<Thing> buildings)
     {
         var num = float.PositiveInfinity;
         foreach (var thing in buildings)
@@ -210,7 +210,7 @@ public class CompTreeConnectionExpanded : ThingComp
         return num;
     }
 
-    private void SpawnDryad()
+    private void spawnDryad()
     {
         spawnTick = Find.TickManager.TicksGame + (int)(GenDate.TicksPerDay * SpawnDays);
         var pawn = GenerateNewDryad(Props.pawnKind);
@@ -226,7 +226,7 @@ public class CompTreeConnectionExpanded : ThingComp
             false, false, false, false, 0f, 0f, null, 1f, null, null, null, null, null, null, null, Gender.Male, null,
             null, null, null, false, false, false, false, null, null, null, null, null, 0f,
             DevelopmentalStage.Newborn));
-        ResetDryad(pawn);
+        resetDryad(pawn);
         var connections = pawn.connections;
         connections?.ConnectTo(parent);
 
@@ -234,7 +234,7 @@ public class CompTreeConnectionExpanded : ThingComp
         return pawn;
     }
 
-    private void ResetDryad(Pawn dryad)
+    private void resetDryad(Pawn dryad)
     {
         if (Connected && dryad.Faction != connectedPawns[0]?.Faction)
         {
@@ -284,10 +284,10 @@ public class CompTreeConnectionExpanded : ThingComp
 
     public void Prune(Pawn pawn)
     {
-        SetLastPrunedTick(pawn, Find.TickManager.TicksGame);
+        setLastPrunedTick(pawn, Find.TickManager.TicksGame);
         var value = GetConnectionStrength(pawn) + (connectedPawns.Count * ConnectionStrengthGainPerHourOfPruning(pawn) /
                                                    GauranlenTreeSettings.PruningDuration);
-        SetConnectionStrength(pawn, value);
+        setConnectionStrength(pawn, value);
         if (lastSubPlantTick >= Find.TickManager.TicksGame)
         {
             return;
@@ -299,7 +299,7 @@ public class CompTreeConnectionExpanded : ThingComp
 
     public bool ShouldBePrunedNow(bool forced, Pawn pawn)
     {
-        if (ConnectionStrength >= DesiredConnectionStrength || GetConnectionStrength(pawn) >= DesiredConnectionStrength)
+        if (ConnectionStrength >= desiredConnectionStrength || GetConnectionStrength(pawn) >= desiredConnectionStrength)
         {
             return false;
         }
@@ -309,12 +309,12 @@ public class CompTreeConnectionExpanded : ThingComp
             return true;
         }
 
-        if (ConnectionStrength >= DesiredConnectionStrength - 0.03f)
+        if (ConnectionStrength >= desiredConnectionStrength - 0.03f)
         {
             return false;
         }
 
-        return Find.TickManager.TicksGame >= GetLastPrunedTick(pawn) + 10000;
+        return Find.TickManager.TicksGame >= getLastPrunedTick(pawn) + 10000;
     }
 
     public float ConnectionStrengthGainPerHourOfPruning(Pawn pawn)
@@ -335,7 +335,7 @@ public class CompTreeConnectionExpanded : ThingComp
         if (buildingsReducingConnectionStrength.Any())
         {
             num += Props.connectionLossDailyPerBuildingDistanceCurve.Evaluate(
-                ClosestDistanceToBlockingBuilding(buildingsReducingConnectionStrength));
+                closestDistanceToBlockingBuilding(buildingsReducingConnectionStrength));
         }
 
         return num / ConnectionStrengthGainPerHourOfPruning(pawn);
@@ -348,7 +348,7 @@ public class CompTreeConnectionExpanded : ThingComp
         if (parent.Spawned && buildingsReducingConnectionStrength.Any())
         {
             num += Props.connectionLossDailyPerBuildingDistanceCurve.Evaluate(
-                ClosestDistanceToBlockingBuilding(buildingsReducingConnectionStrength));
+                closestDistanceToBlockingBuilding(buildingsReducingConnectionStrength));
         }
 
         return num / connectedPawns.Count;
@@ -365,7 +365,7 @@ public class CompTreeConnectionExpanded : ThingComp
         return num;
     }
 
-    private bool TryGetGaumakerCell(out IntVec3 cell)
+    private bool tryGetGaumakerCell(out IntVec3 cell)
     {
         cell = IntVec3.Invalid;
         return CellFinder.TryFindRandomCellNear(parent.Position, parent.Map, 3,
@@ -379,7 +379,7 @@ public class CompTreeConnectionExpanded : ThingComp
     {
         if (Connected)
         {
-            var command_Action = new Command_Action
+            var commandAction = new Command_Action
             {
                 defaultLabel = "ChangeMode".Translate(),
                 defaultDesc = "ChangeModeDesc".Translate(parent.Named("TREE")),
@@ -399,21 +399,18 @@ public class CompTreeConnectionExpanded : ThingComp
 
             if (!pawnIsHere)
             {
-                command_Action.Disable(connectedPawns.Count > 1
+                commandAction.Disable(connectedPawns.Count > 1
                     ? "AllConnectedPawnsAreAway".Translate()
                     : "ConnectedPawnAway".Translate(connectedPawns[0].Named("PAWN")));
             }
 
-            yield return command_Action;
-            if (pruningGizmo == null)
-            {
-                pruningGizmo = new Gizmo_PruningConfigExpanded(this);
-            }
+            yield return commandAction;
+            pruningGizmo ??= new Gizmo_PruningConfigExpanded(this);
 
             yield return pruningGizmo;
             if (dryads.Count > 0)
             {
-                var command_Action2 = new Command_Action
+                var commandAction2 = new Command_Action
                 {
                     defaultLabel = "DefendTreeLabelExpanded".Translate(),
                     defaultDesc = "DefendTreeExpandedDesc".Translate(),
@@ -437,11 +434,11 @@ public class CompTreeConnectionExpanded : ThingComp
                 };
                 if (cachedLordJob != null)
                 {
-                    command_Action2.Disable("CooldownTime".Translate() + " " +
-                                            (lordJobCoolDown - Find.TickManager.TicksGame).ToStringTicksToPeriod());
+                    commandAction2.Disable("CooldownTime".Translate() + " " +
+                                           (lordJobCoolDown - Find.TickManager.TicksGame).ToStringTicksToPeriod());
                 }
 
-                yield return command_Action2;
+                yield return commandAction2;
             }
         }
         else
@@ -449,13 +446,13 @@ public class CompTreeConnectionExpanded : ThingComp
             yield return new Command_Action
             {
                 defaultLabel =
-                    (NoWildDryadSpawning
+                    (noWildDryadSpawning
                         ? "NoWildDryadSpawningGauranlenTreeExpanded"
                         : "WildDryadSpawningGauranlenTreeExpanded").Translate(),
                 defaultDesc = "NoWildDryadSpawningGauranlenTreeExpandedTT".Translate(),
                 icon = ContentFinder<Texture2D>.Get(
-                    NoWildDryadSpawning ? "UI/WildDryadDisabled" : "UI/WildDryadEnabled"),
-                action = delegate { NoWildDryadSpawning = !NoWildDryadSpawning; }
+                    noWildDryadSpawning ? "UI/WildDryadDisabled" : "UI/WildDryadEnabled"),
+                action = delegate { noWildDryadSpawning = !noWildDryadSpawning; }
             };
         }
 
@@ -467,7 +464,7 @@ public class CompTreeConnectionExpanded : ThingComp
         yield return new Command_Action
         {
             defaultLabel = "DEV: Spawn dryad",
-            action = SpawnDryad
+            action = spawnDryad
         };
         yield return new Command_Action
         {
@@ -476,7 +473,7 @@ public class CompTreeConnectionExpanded : ThingComp
             {
                 foreach (var connectedPawn2 in connectedPawns)
                 {
-                    SetConnectionStrength(connectedPawn2, GetConnectionStrength(connectedPawn2) - 0.1f);
+                    setConnectionStrength(connectedPawn2, GetConnectionStrength(connectedPawn2) - 0.1f);
                 }
             }
         };
@@ -487,7 +484,7 @@ public class CompTreeConnectionExpanded : ThingComp
             {
                 foreach (var connectedPawn3 in connectedPawns)
                 {
-                    SetConnectionStrength(connectedPawn3, GetConnectionStrength(connectedPawn3) + 0.1f);
+                    setConnectionStrength(connectedPawn3, GetConnectionStrength(connectedPawn3) + 0.1f);
                 }
             }
         };
@@ -518,7 +515,7 @@ public class CompTreeConnectionExpanded : ThingComp
 
         if (ticksGame >= spawnTick)
         {
-            SpawnDryad();
+            spawnDryad();
         }
 
         if (Connected)
@@ -539,7 +536,7 @@ public class CompTreeConnectionExpanded : ThingComp
 
                 var value = connectionStrength.TryGetValue(connectedPawn) -
                             (ConnectionStrengthLossPerDay(connectedPawn) / GenDate.TicksPerDay);
-                SetConnectionStrength(connectedPawn, value);
+                setConnectionStrength(connectedPawn, value);
             }
         }
 
@@ -550,7 +547,7 @@ public class CompTreeConnectionExpanded : ThingComp
 
         if (Mode == GauranlenTreeModeDefOf.Gaumaker && dryads.Count >= 3)
         {
-            if (gaumakerPod == null && TryGetGaumakerCell(out var cell))
+            if (gaumakerPod == null && tryGetGaumakerCell(out var cell))
             {
                 gaumakerPod = GenSpawn.Spawn(ThingMaker.MakeThing(ThingDefOf.GaumakerCocoon), cell, parent.Map);
             }
@@ -571,8 +568,9 @@ public class CompTreeConnectionExpanded : ThingComp
         }
 
         var source = buildingsReducingConnectionStrength.Select(c => GenLabel.ThingLabel(c, 1, false)).Distinct();
-        var taggedString = descKey.Translate() + ": " + source.Take(3).ToCommaList().CapitalizeFirst();
-        if (source.Count() > 3)
+        var sourceArray = source as string[] ?? source.ToArray();
+        var taggedString = descKey.Translate() + ": " + sourceArray.Take(3).ToCommaList().CapitalizeFirst();
+        if (sourceArray.Length > 3)
         {
             taggedString += " " + "Etc".Translate();
         }
@@ -595,7 +593,7 @@ public class CompTreeConnectionExpanded : ThingComp
 
             foreach (var connectedPawn in connectedPawns)
             {
-                SetLastPrunedTick(connectedPawn, Find.TickManager.TicksGame);
+                setLastPrunedTick(connectedPawn, Find.TickManager.TicksGame);
             }
 
             spawnTick = Find.TickManager.TicksGame + SpawningDurationTicks;
@@ -642,11 +640,11 @@ public class CompTreeConnectionExpanded : ThingComp
 
         connectedPawns.Add(pawn);
         pawn.connections?.ConnectTo(parent);
-        SetConnectionStrength(pawn, Props.initialConnectionStrengthRange.LerpThroughRange(ritualQuality));
-        SetLastPrunedTick(pawn, 0);
+        setConnectionStrength(pawn, Props.initialConnectionStrengthRange.LerpThroughRange(ritualQuality));
+        setLastPrunedTick(pawn, 0);
         foreach (var dryad in dryads)
         {
-            ResetDryad(dryad);
+            resetDryad(dryad);
             dryad.MentalState?.RecoverFromState();
         }
     }
@@ -716,7 +714,7 @@ public class CompTreeConnectionExpanded : ThingComp
                 ConnectionTornTicks.ToStringTicksToDays().Named("DURATION")), parent, MessageTypeDefOf.NegativeEvent);
         foreach (var dryad in dryads)
         {
-            ResetDryad(dryad);
+            resetDryad(dryad);
         }
 
         SoundDefOf.GauranlenConnectionTorn.PlayOneShot(SoundInfo.InMap(parent));
@@ -754,7 +752,7 @@ public class CompTreeConnectionExpanded : ThingComp
                 {
                     connectedPawn.needs?.mood?.thoughts?.memories.TryGainMemory(ThoughtDefOf.DryadDied);
                     var value = GetConnectionStrength(connectedPawn) - Props.connectionStrengthLossPerDryadDeath;
-                    SetConnectionStrength(connectedPawn, value);
+                    setConnectionStrength(connectedPawn, value);
                 }
 
                 dryads.RemoveAt(i);
@@ -930,12 +928,12 @@ public class CompTreeConnectionExpanded : ThingComp
 
     public override void PostExposeData()
     {
-        Scribe_Values.Look(ref NoWildDryadSpawning, "NoWildDryadSpawning");
+        Scribe_Values.Look(ref noWildDryadSpawning, "NoWildDryadSpawning");
         Scribe_Defs.Look(ref currentMode, "currentMode");
         Scribe_Defs.Look(ref desiredMode, "desiredMode");
         Scribe_Values.Look(ref nextUntornTick, "nextUntornTick", -1);
         Scribe_Values.Look(ref spawnTick, "spawnTick", -1);
-        Scribe_Values.Look(ref DesiredConnectionStrength, "DesiredConnectionStrength", 0.5f);
+        Scribe_Values.Look(ref desiredConnectionStrength, "DesiredConnectionStrength", 0.5f);
         Scribe_Values.Look(ref lastSubPlantTick, "lastSubPlantTick", -1);
         Scribe_Deep.Look(ref cachedLordJob, "cachedLordJob");
         Scribe_Values.Look(ref lordJobCoolDown, "lordJobCoolDown");
@@ -952,19 +950,10 @@ public class CompTreeConnectionExpanded : ThingComp
         }
 
         dryads.RemoveAll(x => x?.Dead ?? true);
-        if (connectionStrength == null)
-        {
-            connectionStrength = new Dictionary<Pawn, float>();
-        }
+        connectionStrength ??= new Dictionary<Pawn, float>();
 
-        if (lastPrunedTicks == null)
-        {
-            lastPrunedTicks = new Dictionary<Pawn, int>();
-        }
+        lastPrunedTicks ??= new Dictionary<Pawn, int>();
 
-        if (connectedPawns == null)
-        {
-            connectedPawns = [];
-        }
+        connectedPawns ??= [];
     }
 }

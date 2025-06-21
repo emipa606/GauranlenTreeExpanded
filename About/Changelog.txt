@@ -1,5 +1,8 @@
 # Changelog for GauranlenTreeExpanded
 
+1.6.0 - Mod updated for 1.6 and passed autotests
+
+
 1.5.1 - Added setting to change the amount of pawns that can be connected to a tree
 Used DeepL to update translations for ChineseSimplified, French, German
 

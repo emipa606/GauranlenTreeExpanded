@@ -9,8 +9,6 @@ public class JobDriver_MergeIntoGaumakerPodExpanded : JobDriver
 {
     private const int WaitTicks = 120;
 
-    private CompTreeConnectionExpanded TreeComp => job.targetA.Thing.TryGetComp<CompTreeConnectionExpanded>();
-
     private CompGaumakerPod GaumakerPod => job.targetB.Thing.TryGetComp<CompGaumakerPod>();
 
     public override bool TryMakePreToilReservations(bool errorOnFailed)

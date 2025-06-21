@@ -19,11 +19,8 @@ public class GauranlenMossExpandedComp : ThingComp
             return;
         }
 
-        if (tree is { Spawned: true } && IntVec3Utility.ManhattanDistanceFlat(parent.Position, tree.Position) > 35)
-        {
-            parent.Kill();
-        }
-        else if (tree == null)
+        if (tree is { Spawned: true } && IntVec3Utility.ManhattanDistanceFlat(parent.Position, tree.Position) > 35 ||
+            tree == null)
         {
             parent.Kill();
         }

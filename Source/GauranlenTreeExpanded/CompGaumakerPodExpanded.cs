@@ -6,9 +6,9 @@ namespace GauranlenTreeExpanded;
 
 public class CompGaumakerPodExpanded : CompDryadHolderExpanded
 {
-    public bool Full => innerContainer.Count >= 3;
+    private bool Full => innerContainer.Count >= 3;
 
-    public override void PostDeSpawn(Map map)
+    public override void PostDeSpawn(Map map, DestroyMode mode = DestroyMode.Vanish)
     {
         if (Find.TickManager.TicksGame < tickComplete)
         {

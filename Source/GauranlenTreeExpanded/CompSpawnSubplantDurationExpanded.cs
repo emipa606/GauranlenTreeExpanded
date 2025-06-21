@@ -8,15 +8,15 @@ public class CompSpawnSubplantDurationExpanded : ThingComp
 {
     private int nextSubplantTick;
 
-    private float MaxRadius => GauranlenTreeSettings.MaxMossRadius;
+    private static float MaxRadius => GauranlenTreeSettings.MaxMossRadius;
 
-    public CompProperties_SpawnSubplant Props => (CompProperties_SpawnSubplant)props;
+    private CompProperties_SpawnSubplant Props => (CompProperties_SpawnSubplant)props;
 
     public override void PostSpawnSetup(bool respawningAfterLoad)
     {
         if (!respawningAfterLoad)
         {
-            SetupNextSubplantTick();
+            setupNextSubplantTick();
         }
     }
 
@@ -28,10 +28,10 @@ public class CompSpawnSubplantDurationExpanded : ThingComp
         }
 
         DoGrowSubplant();
-        SetupNextSubplantTick();
+        setupNextSubplantTick();
     }
 
-    public void SetupNextSubplantTick()
+    private void setupNextSubplantTick()
     {
         nextSubplantTick = Find.TickManager.TicksGame + (int)(GenDate.TicksPerDay * Props.subplantSpawnDays);
     }

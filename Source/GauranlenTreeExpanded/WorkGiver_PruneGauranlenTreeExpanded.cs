@@ -7,8 +7,6 @@ namespace GauranlenTreeExpanded;
 
 public class WorkGiver_PruneGauranlenTreeExpanded : WorkGiver_Scanner
 {
-    public const float MaxConnectionStrengthForAutoPruning = 0.99f;
-
     public override bool Prioritized => true;
 
     public override float GetPriority(Pawn pawn, TargetInfo t)
@@ -24,7 +22,7 @@ public class WorkGiver_PruneGauranlenTreeExpanded : WorkGiver_Scanner
             return 0f;
         }
 
-        return compTreeConnectionExpanded.DesiredConnectionStrength -
+        return compTreeConnectionExpanded.desiredConnectionStrength -
                compTreeConnectionExpanded.GetConnectionStrength(pawn);
     }
 

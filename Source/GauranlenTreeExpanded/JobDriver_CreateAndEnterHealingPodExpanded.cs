@@ -6,7 +6,7 @@ namespace GauranlenTreeExpanded;
 
 public class JobDriver_CreateAndEnterHealingPodExpanded : JobDriver_CreateAndEnterDryadHolderExpanded
 {
-    public override Toil EnterToil()
+    protected override Toil EnterToil()
     {
         return Toils_General.Do(delegate
         {

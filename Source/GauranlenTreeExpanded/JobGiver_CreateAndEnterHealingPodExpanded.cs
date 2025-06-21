@@ -5,9 +5,9 @@ namespace GauranlenTreeExpanded;
 
 public class JobGiver_CreateAndEnterHealingPodExpanded : JobGiver_CreateAndEnterDryadHolderExpanded
 {
-    public override JobDef JobDef => DefOfClass.CreateAndEnterHealingPodExpanded;
+    protected override JobDef JobDef => DefOfClass.CreateAndEnterHealingPodExpanded;
 
-    public override bool ExtraValidator(Pawn pawn, CompTreeConnectionExpanded connectionComp)
+    protected override bool ExtraValidator(Pawn pawn, CompTreeConnectionExpanded connectionComp)
     {
         if (pawn.mindState is not { returnToHealingPod: true })
         {

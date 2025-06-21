@@ -17,9 +17,9 @@ internal class Dialog_ChangeDryadCasteExpanded : Window
 
     private const float ChangeFormButtonHeight = 55f;
 
-    private static readonly Vector2 OptionSize = new Vector2(190f, 46f);
+    private static readonly Vector2 OptionSize = new(190f, 46f);
 
-    private static readonly Vector2 ButSize = new Vector2(200f, 40f);
+    private static readonly Vector2 ButSize = new(200f, 40f);
 
     private readonly List<GauranlenTreeModeDef> allDryadModes;
 
@@ -47,7 +47,7 @@ internal class Dialog_ChangeDryadCasteExpanded : Window
         allDryadModes = DefDatabase<GauranlenTreeModeDef>.AllDefs.ToList();
     }
 
-    public override Vector2 InitialSize => new Vector2(Mathf.Min(900, UI.screenWidth), 650f);
+    public override Vector2 InitialSize => new(Mathf.Min(900, UI.screenWidth), 650f);
 
     private PawnKindDef SelectedKind => selectedMode.pawnKindDef;
 
@@ -59,14 +59,14 @@ internal class Dialog_ChangeDryadCasteExpanded : Window
         }
 
         base.PreOpen();
-        SetupView();
+        setupView();
     }
 
-    private void SetupView()
+    private void setupView()
     {
         foreach (var allDryadMode in allDryadModes)
         {
-            rightViewWidth = Mathf.Max(rightViewWidth, GetPosition(allDryadMode, InitialSize.y).x + OptionSize.x);
+            rightViewWidth = Mathf.Max(rightViewWidth, getPosition(allDryadMode, InitialSize.y).x + OptionSize.x);
         }
 
         rightViewWidth += 20f;
@@ -82,11 +82,11 @@ internal class Dialog_ChangeDryadCasteExpanded : Window
         var curY = num;
         var num2 = inRect.height - num;
         num2 -= ButSize.y + 10f;
-        DrawLeftRect(new Rect(inRect.xMin, num, LeftRectWidth, num2), ref curY);
-        DrawRightRect(new Rect(inRect.x + LeftRectWidth + 17f, num, inRect.width - LeftRectWidth - 17f, num2));
+        drawLeftRect(new Rect(inRect.xMin, num, LeftRectWidth, num2), ref curY);
+        drawRightRect(new Rect(inRect.x + LeftRectWidth + 17f, num, inRect.width - LeftRectWidth - 17f, num2));
     }
 
-    private void DrawLeftRect(Rect rect, ref float curY)
+    private void drawLeftRect(Rect rect, ref float curY)
     {
         var rect2 = new Rect(rect.x, curY, rect.width, rect.height)
         {
@@ -155,7 +155,7 @@ internal class Dialog_ChangeDryadCasteExpanded : Window
         }
 
         var rect4 = new Rect(rect3.x, rect3.yMax - ChangeFormButtonHeight, rect3.width, ChangeFormButtonHeight);
-        if (MeetsRequirements(selectedMode) && selectedMode != currentMode)
+        if (meetsRequirements(selectedMode) && selectedMode != currentMode)
         {
             if (!Widgets.ButtonText(rect4, "Accept".Translate()))
             {
@@ -166,13 +166,13 @@ internal class Dialog_ChangeDryadCasteExpanded : Window
                 "GauranlenModeChangeDescFull".Translate(treeConnection.parent.Named("TREE"),
                     connectedPawn.Named("CONNECTEDPAWN"),
                     ThingDefOf.DryadCocoon.GetCompProperties<CompProperties_DryadCocoon>().daysToComplete
-                        .Named("DURATION")), StartChange);
+                        .Named("DURATION")), startChange);
             Find.WindowStack.Add(window);
         }
         else
         {
             string label = selectedMode == currentMode ? "AlreadySelected".Translate() :
-                !MeetsMemeRequirements(selectedMode) ? (string)"MissingRequiredMemes".Translate() :
+                !meetsMemeRequirements(selectedMode) ? (string)"MissingRequiredMemes".Translate() :
                 selectedMode.previousStage == null || currentMode == selectedMode.previousStage ? "Locked".Translate() :
                 (string)("Locked".Translate() + ": " + "MissingRequiredCaste".Translate());
             Text.Anchor = TextAnchor.MiddleCenter;
@@ -182,14 +182,14 @@ internal class Dialog_ChangeDryadCasteExpanded : Window
         }
     }
 
-    private void StartChange()
+    private void startChange()
     {
         treeConnection.desiredMode = selectedMode;
         SoundDefOf.GauranlenProductionModeSet.PlayOneShotOnCamera();
         Close(false);
     }
 
-    private void DrawRightRect(Rect rect)
+    private void drawRightRect(Rect rect)
     {
         Widgets.DrawMenuSection(rect);
         var rect2 = new Rect(0f, 0f, rightViewWidth, rect.height - 16f);
@@ -197,17 +197,17 @@ internal class Dialog_ChangeDryadCasteExpanded : Window
         Widgets.ScrollHorizontal(rect, ref scrollPosition, rect2);
         Widgets.BeginScrollView(rect, ref scrollPosition, rect2);
         GUI.BeginGroup(rect3);
-        DrawDependencyLines(rect3);
+        drawDependencyLines(rect3);
         foreach (var allDryadMode in allDryadModes)
         {
-            DrawDryadStage(rect3, allDryadMode);
+            drawDryadStage(rect3, allDryadMode);
         }
 
         GUI.EndGroup();
         Widgets.EndScrollView();
     }
 
-    private bool MeetsMemeRequirements(GauranlenTreeModeDef stage)
+    private bool meetsMemeRequirements(GauranlenTreeModeDef stage)
     {
         if (stage.requiredMemes.NullOrEmpty())
         {
@@ -225,24 +225,24 @@ internal class Dialog_ChangeDryadCasteExpanded : Window
         return true;
     }
 
-    private bool MeetsRequirements(GauranlenTreeModeDef mode)
+    private bool meetsRequirements(GauranlenTreeModeDef mode)
     {
         if (mode.previousStage != null && currentMode != mode.previousStage)
         {
             return false;
         }
 
-        return MeetsMemeRequirements(mode);
+        return meetsMemeRequirements(mode);
     }
 
-    private Color GetBoxColor(GauranlenTreeModeDef mode)
+    private Color getBoxColor(GauranlenTreeModeDef mode)
     {
         var result = TexUI.AvailResearchColor;
         if (mode == currentMode)
         {
             result = TexUI.ActiveResearchColor;
         }
-        else if (!MeetsRequirements(mode))
+        else if (!meetsRequirements(mode))
         {
             result = TexUI.LockedResearchColor;
         }
@@ -255,7 +255,7 @@ internal class Dialog_ChangeDryadCasteExpanded : Window
         return result;
     }
 
-    private Color GetBoxOutlineColor(GauranlenTreeModeDef mode)
+    private Color getBoxOutlineColor(GauranlenTreeModeDef mode)
     {
         if (selectedMode != null && selectedMode == mode)
         {
@@ -265,18 +265,18 @@ internal class Dialog_ChangeDryadCasteExpanded : Window
         return TexUI.DefaultBorderResearchColor;
     }
 
-    private Color GetTextColor(GauranlenTreeModeDef mode)
+    private Color getTextColor(GauranlenTreeModeDef mode)
     {
-        return !MeetsRequirements(mode) ? ColorLibrary.RedReadable : Color.white;
+        return !meetsRequirements(mode) ? ColorLibrary.RedReadable : Color.white;
     }
 
-    private void DrawDependencyLines(Rect fullRect)
+    private void drawDependencyLines(Rect fullRect)
     {
         foreach (var allDryadMode in allDryadModes)
         {
             if (allDryadMode.previousStage != null)
             {
-                DrawLineBetween(allDryadMode, allDryadMode.previousStage, fullRect.height,
+                drawLineBetween(allDryadMode, allDryadMode.previousStage, fullRect.height,
                     TexUI.DefaultLineResearchColor);
             }
         }
@@ -286,20 +286,20 @@ internal class Dialog_ChangeDryadCasteExpanded : Window
             if (allDryadMode2.previousStage != null &&
                 (allDryadMode2.previousStage == selectedMode || selectedMode == allDryadMode2))
             {
-                DrawLineBetween(allDryadMode2, allDryadMode2.previousStage, fullRect.height,
+                drawLineBetween(allDryadMode2, allDryadMode2.previousStage, fullRect.height,
                     TexUI.HighlightLineResearchColor, 3f);
             }
         }
     }
 
-    private void DrawDryadStage(Rect rect, GauranlenTreeModeDef stage)
+    private void drawDryadStage(Rect rect, GauranlenTreeModeDef stage)
     {
-        var position = GetPosition(stage, rect.height);
+        var position = getPosition(stage, rect.height);
         var rect2 = new Rect(position.x, position.y, OptionSize.x, OptionSize.y);
-        Widgets.DrawBoxSolidWithOutline(rect2, GetBoxColor(stage), GetBoxOutlineColor(stage));
+        Widgets.DrawBoxSolidWithOutline(rect2, getBoxColor(stage), getBoxOutlineColor(stage));
         var rect3 = new Rect(rect2.x, rect2.y, rect2.height, rect2.height);
         Widgets.DefIcon(rect3.ContractedBy(4f), stage.pawnKindDef);
-        GUI.color = GetTextColor(stage);
+        GUI.color = getTextColor(stage);
         Text.Anchor = TextAnchor.MiddleLeft;
         Widgets.Label(new Rect(rect3.xMax, rect2.y, rect2.width - rect3.width, rect2.height).ContractedBy(4f),
             stage.LabelCap);
@@ -314,15 +314,15 @@ internal class Dialog_ChangeDryadCasteExpanded : Window
         SoundDefOf.Click.PlayOneShotOnCamera();
     }
 
-    private void DrawLineBetween(GauranlenTreeModeDef left, GauranlenTreeModeDef right, float height, Color color,
+    private void drawLineBetween(GauranlenTreeModeDef left, GauranlenTreeModeDef right, float height, Color color,
         float width = 2f)
     {
-        var start = GetPosition(left, height) + new Vector2(5f, OptionSize.y / 2f);
-        var end = GetPosition(right, height) + (OptionSize / 2f);
+        var start = getPosition(left, height) + new Vector2(5f, OptionSize.y / 2f);
+        var end = getPosition(right, height) + (OptionSize / 2f);
         Widgets.DrawLine(start, end, color, width);
     }
 
-    private Vector2 GetPosition(GauranlenTreeModeDef stage, float height)
+    private static Vector2 getPosition(GauranlenTreeModeDef stage, float height)
     {
         return new Vector2((stage.drawPosition.x * OptionSize.x) + (stage.drawPosition.x * OptionSpacing),
             (height - OptionSize.y) * stage.drawPosition.y);

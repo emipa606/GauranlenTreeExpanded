@@ -11,20 +11,20 @@ public class Gizmo_PruningConfigExpanded : Gizmo
 {
     private const float Width = 212f;
 
-    private static readonly Texture2D StrengthTex = SolidColorMaterials.NewSolidColorTexture(ColorLibrary.Orange);
+    private static readonly Texture2D strengthTex = SolidColorMaterials.NewSolidColorTexture(ColorLibrary.Orange);
 
-    private static readonly Texture2D StrengthHighlightTex =
+    private static readonly Texture2D strengthHighlightTex =
         SolidColorMaterials.NewSolidColorTexture(ColorLibrary.LightOrange);
 
-    private static readonly Texture2D EmptyBarTex =
+    private static readonly Texture2D emptyBarTex =
         SolidColorMaterials.NewSolidColorTexture(new Color(0.03f, 0.035f, 0.05f));
 
-    private static readonly Texture2D StrengthTargetTex =
+    private static readonly Texture2D strengthTargetTex =
         SolidColorMaterials.NewSolidColorTexture(ColorLibrary.DarkOrange);
 
     private readonly CompTreeConnectionExpanded connection;
 
-    private readonly float ExtraHeight = Text.LineHeight * 1.5f;
+    private readonly float extraHeight = Text.LineHeight * 1.5f;
 
     private bool draggingBar;
 
@@ -37,9 +37,9 @@ public class Gizmo_PruningConfigExpanded : Gizmo
     }
 
     private float DesiredConnectionStrength =>
-        !draggingBar ? connection.DesiredConnectionStrength : selectedStrengthTarget;
+        !draggingBar ? connection.desiredConnectionStrength : selectedStrengthTarget;
 
-    private float OverrideHeight => 75f + ExtraHeight;
+    private float OverrideHeight => 75f + extraHeight;
 
     public override float GetWidth(float maxWidth)
     {
@@ -53,7 +53,7 @@ public class Gizmo_PruningConfigExpanded : Gizmo
             return new GizmoResult(GizmoState.Clear);
         }
 
-        var rect = new Rect(topLeft.x, topLeft.y - ExtraHeight, GetWidth(maxWidth), OverrideHeight);
+        var rect = new Rect(topLeft.x, topLeft.y - extraHeight, GetWidth(maxWidth), OverrideHeight);
         var rect2 = rect.ContractedBy(6f);
         Widgets.DrawWindowBackground(rect);
         var rect3 = rect2;
@@ -77,14 +77,14 @@ public class Gizmo_PruningConfigExpanded : Gizmo
         if (Mouse.IsOver(rect2) && !draggingBar)
         {
             Widgets.DrawHighlight(rect2);
-            TooltipHandler.TipRegion(rect2, GetTip, 9493937);
+            TooltipHandler.TipRegion(rect2, getTip, 9493937);
         }
 
-        DrawBar(rect2, curY);
+        drawBar(rect2, curY);
         return new GizmoResult(GizmoState.Clear);
     }
 
-    private string GetTip()
+    private string getTip()
     {
         var text = connection.ConnectedPawns.Count == 1
             ? "DesiredConnectionStrengthDesc".Translate(connection.parent.Named("TREE"),
@@ -103,7 +103,7 @@ public class Gizmo_PruningConfigExpanded : Gizmo
         return text;
     }
 
-    private void DrawThreshold(Rect rect, float percent, float strValue)
+    private static void drawThreshold(Rect rect, float percent, float strValue)
     {
         var rect2 = default(Rect);
         rect2.x = rect.x + 3f + ((rect.width - 8f) * percent);
@@ -114,10 +114,10 @@ public class Gizmo_PruningConfigExpanded : Gizmo
         GUI.DrawTexture(position, strValue < percent ? BaseContent.GreyTex : BaseContent.BlackTex);
     }
 
-    private void DrawStrengthTarget(Rect rect, float percent)
+    private static void drawStrengthTarget(Rect rect, float percent)
     {
         var num = Mathf.Round((rect.width - 8f) * percent);
-        GUI.DrawTexture(new Rect(rect.x + 3f + num, rect.y, 2f, rect.height), StrengthTargetTex);
+        GUI.DrawTexture(new Rect(rect.x + 3f + num, rect.y, 2f, rect.height), strengthTargetTex);
         var num2 = UIScaling.AdjustCoordToUIScalingFloor(rect.x + 2f + num);
         var xMax = UIScaling.AdjustCoordToUIScalingCeil(num2 + 4f);
         var rect2 = default(Rect);
@@ -126,13 +126,13 @@ public class Gizmo_PruningConfigExpanded : Gizmo
         rect2.xMin = num2;
         rect2.xMax = xMax;
         var rect3 = rect2;
-        GUI.DrawTexture(rect3, StrengthTargetTex);
+        GUI.DrawTexture(rect3, strengthTargetTex);
         var position = rect3;
         position.y = rect.yMax - 2f;
-        GUI.DrawTexture(position, StrengthTargetTex);
+        GUI.DrawTexture(position, strengthTargetTex);
     }
 
-    private void DrawBar(Rect inRect, float curY)
+    private void drawBar(Rect inRect, float curY)
     {
         var rect = inRect;
         rect.xMin += 10f;
@@ -141,13 +141,13 @@ public class Gizmo_PruningConfigExpanded : Gizmo
         rect.yMin = curY + 10f;
         var mouseIsOver = Mouse.IsOver(rect);
         var connectionStrength = connection.GetConnectionStrength();
-        Widgets.FillableBar(rect, connectionStrength, mouseIsOver ? StrengthHighlightTex : StrengthTex, EmptyBarTex,
+        Widgets.FillableBar(rect, connectionStrength, mouseIsOver ? strengthHighlightTex : strengthTex, emptyBarTex,
             true);
         foreach (var point in connection.Props.maxDryadsPerConnectionStrengthCurve.Points)
         {
             if (point.x > 0f)
             {
-                DrawThreshold(rect, point.x, connectionStrength);
+                drawThreshold(rect, point.x, connectionStrength);
             }
         }
 
@@ -177,7 +177,7 @@ public class Gizmo_PruningConfigExpanded : Gizmo
         {
             if (selectedStrengthTarget >= 0f)
             {
-                connection.DesiredConnectionStrength = selectedStrengthTarget;
+                connection.desiredConnectionStrength = selectedStrengthTarget;
             }
 
             selectedStrengthTarget = -1f;
@@ -185,7 +185,7 @@ public class Gizmo_PruningConfigExpanded : Gizmo
             current2.Use();
         }
 
-        DrawStrengthTarget(rect, DesiredConnectionStrength);
+        drawStrengthTarget(rect, DesiredConnectionStrength);
         Text.Font = GameFont.Small;
         Text.Anchor = TextAnchor.MiddleCenter;
         Widgets.Label(rect, connection.GetConnectionStrength().ToStringPercent());
