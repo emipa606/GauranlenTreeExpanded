@@ -1,3 +1,4 @@
+using System.Linq;
 using RimWorld;
 using Verse;
 using Verse.AI;
@@ -55,9 +56,9 @@ public class CompSpawnSubplantDurationExpanded : ThingComp
 
             var isSubPlant = false;
             var thingList = intVec.GetThingList(parent.Map);
-            foreach (var item in thingList)
+            foreach (var item in thingList.Select(x => x.def))
             {
-                if (item.def == Props.subplant)
+                if (item == Props.subplant)
                 {
                     isSubPlant = true;
                     break;
@@ -70,7 +71,7 @@ public class CompSpawnSubplantDurationExpanded : ThingComp
 
                 foreach (var thingDef in Props.plantsToNotOverwrite)
                 {
-                    if (item.def != thingDef)
+                    if (item != thingDef)
                     {
                         continue;
                     }

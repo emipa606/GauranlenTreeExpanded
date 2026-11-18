@@ -171,10 +171,25 @@ internal class Dialog_ChangeDryadCasteExpanded : Window
         }
         else
         {
-            string label = selectedMode == currentMode ? "AlreadySelected".Translate() :
-                !meetsMemeRequirements(selectedMode) ? (string)"MissingRequiredMemes".Translate() :
-                selectedMode.previousStage == null || currentMode == selectedMode.previousStage ? "Locked".Translate() :
-                (string)("Locked".Translate() + ": " + "MissingRequiredCaste".Translate());
+            string label;
+            if (selectedMode == currentMode)
+            {
+                label = "AlreadySelected".Translate();
+            }
+            else
+            {
+                if (!meetsMemeRequirements(selectedMode))
+                {
+                    label = "MissingRequiredMemes".Translate();
+                }
+                else
+                {
+                    label = selectedMode.previousStage == null || currentMode == selectedMode.previousStage
+                        ? "Locked".Translate()
+                        : (string)("Locked".Translate() + ": " + "MissingRequiredCaste".Translate());
+                }
+            }
+
             Text.Anchor = TextAnchor.MiddleCenter;
             Widgets.DrawHighlight(rect4);
             Widgets.Label(rect4.ContractedBy(5f), label);
@@ -209,20 +224,8 @@ internal class Dialog_ChangeDryadCasteExpanded : Window
 
     private bool meetsMemeRequirements(GauranlenTreeModeDef stage)
     {
-        if (stage.requiredMemes.NullOrEmpty())
-        {
-            return true;
-        }
-
-        foreach (var requiredMeme in stage.requiredMemes)
-        {
-            if (!treeConnection.ConnectedPawns.Any(x => x.Ideo.HasMeme(requiredMeme)))
-            {
-                return false;
-            }
-        }
-
-        return true;
+        return stage.requiredMemes.NullOrEmpty() || stage.requiredMemes.All(requiredMeme =>
+            treeConnection.ConnectedPawns.Any(x => x.Ideo.HasMeme(requiredMeme)));
     }
 
     private bool meetsRequirements(GauranlenTreeModeDef mode)
@@ -314,7 +317,8 @@ internal class Dialog_ChangeDryadCasteExpanded : Window
         SoundDefOf.Click.PlayOneShotOnCamera();
     }
 
-    private void drawLineBetween(GauranlenTreeModeDef left, GauranlenTreeModeDef right, float height, Color color,
+    private static void drawLineBetween(GauranlenTreeModeDef left, GauranlenTreeModeDef right, float height,
+        Color color,
         float width = 2f)
     {
         var start = getPosition(left, height) + new Vector2(5f, OptionSize.y / 2f);

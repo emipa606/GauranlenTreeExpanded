@@ -1,3 +1,4 @@
+using System.Linq;
 using LudeonTK;
 using RimWorld;
 using UnityEngine;
@@ -143,12 +144,10 @@ public class Gizmo_PruningConfigExpanded : Gizmo
         var connectionStrength = connection.GetConnectionStrength();
         Widgets.FillableBar(rect, connectionStrength, mouseIsOver ? strengthHighlightTex : strengthTex, emptyBarTex,
             true);
-        foreach (var point in connection.Props.maxDryadsPerConnectionStrengthCurve.Points)
+        foreach (var point in connection.Props.maxDryadsPerConnectionStrengthCurve.Points.Where(point => point.x > 0f)
+                     .Select(point => point.x))
         {
-            if (point.x > 0f)
-            {
-                drawThreshold(rect, point.x, connectionStrength);
-            }
+            drawThreshold(rect, point, connectionStrength);
         }
 
         var num = Mathf.Clamp(

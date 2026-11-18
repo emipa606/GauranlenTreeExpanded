@@ -15,7 +15,7 @@ public class RitualObligationTargetWorker_ConnectedGauranlenTree : RitualObligat
     {
     }
 
-    private bool Enabled => GauranlenTreeSettings.EnableDisconnectionRitual;
+    private static bool Enabled => GauranlenTreeSettings.EnableDisconnectionRitual;
 
     public override IEnumerable<TargetInfo> GetTargets(RitualObligation obligation, Map map)
     {

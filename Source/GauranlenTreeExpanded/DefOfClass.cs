@@ -5,7 +5,7 @@ using Verse.AI;
 namespace GauranlenTreeExpanded;
 
 [DefOf]
-public class DefOfClass
+public static class DefOfClass
 {
     public static RitualBehaviorDef TreeConnectionExpanded;
 

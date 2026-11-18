@@ -10,10 +10,6 @@ public abstract class CompDryadHolderExpanded : ThingComp, ISuspendableThingHold
 {
     protected const int ExpiryDurationTicks = 600;
 
-    private Material cachedFrontMat;
-
-    private CompTreeConnectionExpanded cachedTreeComp;
-
     protected ThingOwner innerContainer;
     protected int tickComplete = -1;
 
@@ -25,9 +21,9 @@ public abstract class CompDryadHolderExpanded : ThingComp, ISuspendableThingHold
     {
         get
         {
-            cachedTreeComp ??= tree?.TryGetComp<CompTreeConnectionExpanded>();
+            field ??= tree?.TryGetComp<CompTreeConnectionExpanded>();
 
-            return cachedTreeComp;
+            return field;
         }
     }
 
@@ -35,13 +31,13 @@ public abstract class CompDryadHolderExpanded : ThingComp, ISuspendableThingHold
     {
         get
         {
-            if (cachedFrontMat == null)
+            if (field == null)
             {
-                cachedFrontMat = MaterialPool.MatFrom("Things/Building/Misc/DryadSphere/DryadSphereFront",
+                field = MaterialPool.MatFrom("Things/Building/Misc/DryadSphere/DryadSphereFront",
                     ShaderDatabase.Cutout);
             }
 
-            return cachedFrontMat;
+            return field;
         }
     }
 

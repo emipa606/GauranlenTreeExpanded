@@ -1,15 +1,15 @@
 # [Gauranlen Tree Expanded (Continued)](https://steamcommunity.com/sharedfiles/filedetails/?id=3025108023)
 
-![Image](https://i.imgur.com/buuPQel.png)
+![Image](https://img.litet.net/logos/Info.png)
 
 Update of busted_bunnys mod https://steamcommunity.com/sharedfiles/filedetails/?id=2605358686
 
 - Added option to disable the spawning of wild dryads.
 - Added setting to change the amount of pawns that can be connected to a tree
 
-![Image](https://i.imgur.com/pufA0kM.png)
+![Image](https://img.litet.net/logos/Notice.png)
 	
-![Image](https://i.imgur.com/Z4GOv8H.png)
+![Image](https://img.litet.net/logos/OriginalDescription.png)
 
 *Gauranlen Tree gets an expansion. Completely rewritten code allows connecting up to 4 pawns per tree. Brings the possibility to replant Gauranlen Tree. Adds new ritual to tear connection with a tree. And a gizmo to protect the tree with dryads.* 
 
@@ -59,18 +59,18 @@ Feel free to post any suggestions in comments on how to make this mod better.
 If you encounter any errors related to this mod or notice bugs, please post bug reports in [bug reports section](https://steamcommunity.com/workshop/filedetails/discussion/2605358686/4943253385012433497/). <ins>**Bug reports in comments will be ignored!**</ins>
 
 
-[![Image](https://i.imgur.com/cfoFEMA.png)](https://discord.gg/7befJWr9xS)
+[![Image](https://img.litet.net/cfoFEMA.png)](https://discord.gg/7befJWr9xS)
 
 Credits:
 Kilain - commisioner of this mod.
 
-![Image](https://i.imgur.com/PwoNOj4.png)
+![Image](https://img.litet.net/logos/ReportingIssues.png)
 
 
 
 -  See if the the error persists if you just have this mod and its requirements active.
 -  If not, try adding your other mods until it happens again.
--  Post your error-log using [HugsLib](https://steamcommunity.com/workshop/filedetails/?id=818773962) or the standalone [Uploader](https://steamcommunity.com/sharedfiles/filedetails/?id=2873415404) and command Ctrl+F12
+-  Always post your log using the [Log Uploader](https://steamcommunity.com/sharedfiles/filedetails/?id=2873415404)
 -  For best support, please use the Discord-channel for error-reporting.
 -  Do not report errors by making a discussion-thread, I get no notification of that.
 -  If you have the solution for a problem, please post it to the GitHub repository.
@@ -78,4 +78,4 @@ Kilain - commisioner of this mod.
 
  
 
-[![Image](https://img.shields.io/github/v/release/emipa606/GauranlenTreeExpanded?label=latest%20version&style=plastic&color=9f1111&labelColor=black)](https://steamcommunity.com/sharedfiles/filedetails/changelog/3025108023) | tags:  dryad,  connection,  ritual
+[![Image](https://img.shields.io/github/v/release/emipa606/GauranlenTreeExpanded?label=latest%20version&style=plastic&color=9f1111&labelColor=black)](https://steamcommunity.com/sharedfiles/filedetails/changelog/3025108023) | connection, dryad, ritual

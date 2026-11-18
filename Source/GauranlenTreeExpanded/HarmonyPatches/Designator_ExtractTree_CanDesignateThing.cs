@@ -5,7 +5,7 @@ using Verse;
 namespace GauranlenTreeExpanded.HarmonyPatches;
 
 [HarmonyPatch(typeof(Designator_ExtractTree), "CanDesignateThing")]
-public class Designator_ExtractTree_CanDesignateThing
+public static class Designator_ExtractTree_CanDesignateThing
 {
     public static void Postfix(ref AcceptanceReport __result, Thing t)
     {

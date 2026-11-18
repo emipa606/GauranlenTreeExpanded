@@ -6,7 +6,7 @@ using Verse;
 namespace GauranlenTreeExpanded;
 
 [StaticConstructorOnStartup]
-public class StartUpClass
+public static class StartUpClass
 {
     static StartUpClass()
     {

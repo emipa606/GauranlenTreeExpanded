@@ -16,7 +16,6 @@ public class CompTreeConnectionExpanded : ThingComp
 
     private Lord cachedLordJob;
 
-    private Material cachedPodMat;
     private List<Pawn> connectedPawns = [];
 
     private Dictionary<Pawn, float> connectionStrength = new();
@@ -130,19 +129,19 @@ public class CompTreeConnectionExpanded : ThingComp
     private List<Thing> BuildingsReducingConnectionStrength =>
         parent.Map.listerArtificialBuildingsForMeditation.GetForCell(parent.Position, MaxBuildingRadius);
 
-    private int SpawningDurationTicks => (int)(GenDate.TicksPerDay * SpawnDays);
+    private static int SpawningDurationTicks => (int)(GenDate.TicksPerDay * SpawnDays);
 
     private Material PodMat
     {
         get
         {
-            if (cachedPodMat == null)
+            if (field == null)
             {
-                cachedPodMat = MaterialPool.MatFrom("Things/Building/Misc/DryadFormingPod/DryadFormingPod",
+                field = MaterialPool.MatFrom("Things/Building/Misc/DryadFormingPod/DryadFormingPod",
                     ShaderDatabase.Cutout);
             }
 
-            return cachedPodMat;
+            return field;
         }
     }
 
